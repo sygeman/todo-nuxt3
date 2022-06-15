@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
+import { useTodoStore } from "~/todo.store";
+import { CalendarIcon, XIcon } from "@heroicons/vue/outline";
+
+const store = useTodoStore();
+const { todos } = storeToRefs(store);
+const { addTodo, removeTodo, toggleTodoDone } = store;
+
+const description = ref("");
+
+function createTodo() {
+  if (description.value.length > 0) {
+    addTodo(description.value);
+    description.value = "";
+  }
+}
+</script>
+
 <template>
   <div
     class="bg-slate-900 text-white absolute w-full h-full flex items-center justify-center"
@@ -37,23 +57,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { ref } from "vue";
-import { useTodoStore } from "@/stores/todo";
-import { CalendarIcon, XIcon } from "@heroicons/vue/outline";
-
-const store = useTodoStore();
-const { todos } = storeToRefs(store);
-const { addTodo, removeTodo, toggleTodoDone } = store;
-
-const description = ref("");
-
-function createTodo() {
-  if (description.value.length > 0) {
-    addTodo(description.value);
-    description.value = "";
-  }
-}
-</script>
