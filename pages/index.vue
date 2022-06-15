@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
-import { useTodoStore } from "~/todo.store";
+import { useTodoStore } from "~/stores/todo";
 import { CalendarIcon, XIcon } from "@heroicons/vue/outline";
 
 const store = useTodoStore();
